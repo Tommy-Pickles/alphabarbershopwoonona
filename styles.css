@@ -37,6 +37,12 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 [hidden] { display: none !important; }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold-hi);
+  outline-offset: 4px;
+}
+
 .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 36px; }
 
 
@@ -300,24 +306,6 @@ a { color: inherit; text-decoration: none; }
   to   { transform: translateX(-50%); }
 }
 
-
-/* ── INTRO BLURB ──────────────────────────────────────── */
-.intro-blurb {
-  padding: 56px 0 0;
-  text-align: center;
-}
-.intro-blurb-text {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.07em;
-  color: var(--text-lo);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.9;
-  text-transform: uppercase;
-}
-
 /* ── SECTIONS ─────────────────────────────────────────── */
 .section { padding: 120px 0; }
 
@@ -338,6 +326,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.05rem; font-weight: 300;
   color: var(--text-mid); line-height: 1.88;
   margin-bottom: 22px;
+  max-width: 580px;
 }
 
 
@@ -686,7 +675,36 @@ a { color: inherit; text-decoration: none; }
   .hero-scroll { display: none; }
   .hero-actions { flex-direction: column; }
   .btn-gold, .btn-ghost { width: 100%; justify-content: center; }
-  .services-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
   .footer-inner { flex-direction: column; text-align: center; }
+  .fab-book {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+  .hero-bg,
+  .gallery-cell img,
+  .gallery-cell video,
+  .about-video,
+  .btn-gold:hover,
+  .btn-ghost:hover,
+  .btn-book-now:hover,
+  .fab-book:hover {
+    transform: none !important;
+  }
 }
