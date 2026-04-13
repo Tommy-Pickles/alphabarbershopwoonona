@@ -620,7 +620,12 @@ button:focus-visible {
   background: var(--gold); color: var(--ink);
   font-size: 0.84rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   box-shadow: 0 8px 32px rgba(201,168,76,0.45);
-  transition: all 0.25s var(--ease);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.fab-book.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
 }
 .fab-book:hover {
   background: var(--gold-hi);
@@ -816,15 +821,18 @@ button:focus-visible {
     left: auto;
     bottom: 14px;
     justify-content: center;
-    padding: 12px 16px;
-    gap: 6px;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    padding: 10px 14px;
+    gap: 5px;
+    font-size: 0.66rem;
+    letter-spacing: 0.07em;
     border-radius: 999px;
-    background: rgba(201,168,76,0.92);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.32);
+    background: rgba(201,168,76,0.88);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.28);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+  }
+  .fab-book.is-hidden {
+    transform: translateY(8px);
   }
 }
 

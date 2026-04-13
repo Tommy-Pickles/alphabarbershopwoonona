@@ -362,7 +362,7 @@
     </div>
   </footer>
 
-  <a href="https://www.fresha.com/a/alpha-barbershop-woonona-woonona-417-421-princes-highway-g76gz76i/booking" target="_blank" rel="noopener" class="fab-book">✂ Book Now</a>
+  <a href="https://www.fresha.com/a/alpha-barbershop-woonona-woonona-417-421-princes-highway-g76gz76i/booking" target="_blank" rel="noopener" class="fab-book is-hidden">✂ Book Now</a>
 
   <script>
     // Year
@@ -449,6 +449,40 @@
         aboutVid.muted = !aboutVid.muted;
         unmuteBtn.classList.toggle('is-unmuted', !aboutVid.muted);
       });
+    }
+
+    // Floating booking button appears after the hero
+    const fabBook = document.querySelector('.fab-book');
+    const hero = document.getElementById('hero');
+    const mobileFabMedia = window.matchMedia('(max-width: 768px)');
+    if (fabBook && hero) {
+      const setFabVisibility = (show) => fabBook.classList.toggle('is-hidden', !show);
+      const updateFabFallback = () => {
+        if (!mobileFabMedia.matches) {
+          setFabVisibility(true);
+          return;
+        }
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        setFabVisibility(heroBottom <= 120);
+      };
+
+      if ('IntersectionObserver' in window) {
+        const heroFabObserver = new IntersectionObserver(([entry]) => {
+          if (!mobileFabMedia.matches) {
+            setFabVisibility(true);
+            return;
+          }
+          setFabVisibility(!entry.isIntersecting);
+        }, {
+          threshold: 0.15
+        });
+        heroFabObserver.observe(hero);
+      } else {
+        window.addEventListener('scroll', updateFabFallback, { passive: true });
+      }
+
+      mobileFabMedia.addEventListener('change', updateFabFallback);
+      updateFabFallback();
     }
   </script>
 </body>
